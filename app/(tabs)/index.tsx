@@ -1,70 +1,109 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import React from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
-export default function HomeScreen() {
+const LoginScreen: React.FC = () => {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View style={styles.container}>
+      {/* Header com ícones */}
+      <View style={styles.header}>
+        <TouchableOpacity style={styles.iconButton}>
+          <Ionicons name="arrow-back" size={25} color="white" />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconButton}>
+          <Ionicons name="menu" size={25} color="white" />
+        </TouchableOpacity>
+      </View>
+
+      {/* Logo e Título */}
+      <View style={styles.logoContainer}>
+        <Text style={styles.logo}>SENAI</Text>
+        <Text style={styles.subtitle}>Patrimônios em ordem</Text>
+      </View>
+
+      {/* Campos de Email e Senha */}
+      <View style={styles.inputContainer}>
+        <View style={styles.inputWrapper}>
+          <MaterialIcons name="email" size={20} color="#888" style={styles.icon} />
+          <TextInput placeholder="Insira seu email" style={styles.input} />
+        </View>
+        <View style={styles.inputWrapper}>
+          <MaterialIcons name="lock" size={20} color="#888" style={styles.icon} />
+          <TextInput placeholder="Insira sua senha" secureTextEntry style={styles.input} />
+          <TouchableOpacity>
+            <Ionicons name="eye-off" size={20} color="#888" />
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      {/* Botão de Entrar */}
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.buttonText}>Entrar</Text>
+      </TouchableOpacity>
+    </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: 'white',
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+  },
+  iconButton: {
+    backgroundColor: '#8B0000',
+    borderRadius: 10,
+    padding: 15,
+
+  },
+  logoContainer: {
+    alignItems: 'center',
+    marginVertical: 40,
+  },
+  logo: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    color: '#FF0000',
+  },
+  subtitle: {
+    fontSize: 16,
+    color: '#333',
+  },
+  inputContainer: {
+    marginBottom: 20,
+  },
+  inputWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 5,
+    marginBottom: 15,
+    paddingHorizontal: 10,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  icon: {
+    marginRight: 10,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  input: {
+    flex: 1,
+    paddingVertical: 10,
+  },
+  button: {
+    backgroundColor: '#8B0000',
+    paddingVertical: 15,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
+
+export default LoginScreen;
