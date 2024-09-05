@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 
 const LoginScreen: React.FC = () => {
@@ -17,21 +17,21 @@ const LoginScreen: React.FC = () => {
 
       {/* Logo e Título */}
       <View style={styles.logoContainer}>
-        <Text style={styles.logo}>SENAI</Text>
-        <Text style={styles.subtitle}>Patrimônios em ordem</Text>
+        <Image source={require('@/assets/images/logo.png')}/>
+      <Text style={styles.subtitle}>Patrimônios em ordem</Text>
       </View>
 
-      {/* Campos de Email e Senha */}
+      {/* Campos de Email e Senha*/}
       <View style={styles.inputContainer}>
         <View style={styles.inputWrapper}>
-          <MaterialIcons name="email" size={20} color="#888" style={styles.icon} />
+          <MaterialIcons name="email" size={20} color="#B01818" style={styles.icon} />
           <TextInput placeholder="Insira seu email" style={styles.input} />
         </View>
         <View style={styles.inputWrapper}>
-          <MaterialIcons name="lock" size={20} color="#888" style={styles.icon} />
+          <MaterialIcons name="lock" size={20} color="#B01818" style={styles.icon} />
           <TextInput placeholder="Insira sua senha" secureTextEntry style={styles.input} />
           <TouchableOpacity>
-            <Ionicons name="eye-off" size={20} color="#888" />
+            <Ionicons name="eye-off" size={20} color="#B01818" />
           </TouchableOpacity>
         </View>
       </View>
@@ -55,24 +55,23 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 20,
   },
-  iconButton: {
+    iconButton: {
     backgroundColor: '#8B0000',
-    borderRadius: 10,
+    borderRadius: 20,
     padding: 15,
 
   },
-  logoContainer: {
+
+    logoContainer: {
     alignItems: 'center',
     marginVertical: 40,
+    padding: 30,
   },
-  logo: {
-    fontSize: 40,
-    fontWeight: 'bold',
-    color: '#FF0000',
-  },
+
   subtitle: {
-    fontSize: 16,
-    color: '#333',
+    fontSize: 18,
+    color: 'black',
+    padding: 16,
   },
   inputContainer: {
     marginBottom: 20,
@@ -85,25 +84,31 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 15,
     paddingHorizontal: 10,
+    padding: 5,
   },
   icon: {
     marginRight: 10,
+    padding: 5,
   },
   input: {
     flex: 1,
-    paddingVertical: 10,
+    paddingVertical: 10,  
+  
   },
   button: {
     backgroundColor: '#8B0000',
     paddingVertical: 15,
     borderRadius: 5,
     alignItems: 'center',
+  
   },
-  buttonText: {
+  buttonText: {   
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
-  },
+
+
+},
 });
 
 export default LoginScreen;
